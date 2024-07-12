@@ -1,18 +1,8 @@
-getIDN {
-    out "*IDN?";
-    in "%\$1[^\r\n]";
-    ExtraInput = Ignore;
-}
+Terminator = CR;
 
-cmd {
-    out "\$1";
-}
+getTemp {
 
-setD {
-    out "\$1 %d";
-}
-getD {
-    out "\$1?";
-    in "%d";
-    ExtraInput = Ignore;
+	out "?STS";
+	in "TA%f,RHA%*f,TB%*f,RHB%*f";
+
 }

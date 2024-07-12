@@ -32,3 +32,10 @@ class EnvironmentmonitorTests(unittest.TestCase):
 
     def test_WHEN_ioc_started_THEN_ioc_is_not_disabled(self):
         self.ca.assert_that_pv_is("DISABLE", "COMMS ENABLED")
+
+    @skip_if_recsim
+    def test_GIVEN_temp_on_device_20_THEN_ioc_reports_20(self):
+        # Force Emulator to have a temp 20
+        
+        self._lewis.backdoor_set_on_device("temperature", 20)
+        self.ca.assert_that_pv_is_number("TEMP", 20, tolerance=0.01)
