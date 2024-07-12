@@ -18,10 +18,18 @@ record(bo, "$(P)DISABLE")
     field(ONAM, "COMMS DISABLED")
 }
 
-record(ai, "$(P)TEMP")
+record(ai, "$(P)TEMPA")
 {
 	field(DESC, "Temperature A")
 	field(DTYP, "stream")
-	field(INP, "@environmentmonitor.proto getTemp $(PORT)")
+	field(INP, "@environmentmonitor.proto getTempA $(PORT)")
+	field(SCAN, "1 second")
+}
+
+record(ai, "$(P)TEMPB")
+{
+	field(DESC, "Temperature B")
+	field(DTYP, "stream")
+	field(INP, "@environmentmonitor.proto getTempB $(PORT)")
 	field(SCAN, "1 second")
 }

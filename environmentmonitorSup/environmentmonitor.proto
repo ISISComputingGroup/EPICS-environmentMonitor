@@ -1,8 +1,15 @@
 Terminator = CR;
 
-getTemp {
+getTempA {
 
 	out "?STS";
 	in "TA%f,RHA%*f,TB%*f,RHB%*f";
+
+}
+
+getTempB {
+
+	out "?STS";
+	in "TA%*f,RHA%*f,TB%f,RHB%*f";
 
 }

@@ -3,6 +3,8 @@ from lewis.utils.command_builder import CmdBuilder
 from lewis.core.logging import has_log
 from lewis.utils.replies import conditional_reply
 
+if_connected = conditional_reply("connected")
+
 
 @has_log
 class EnvmonStreamInterface(StreamInterface):
@@ -28,7 +30,8 @@ class EnvmonStreamInterface(StreamInterface):
         """
         self.log.error("An error occurred at request " + repr(request) + ": " + repr(error))
 
+    @if_connected
     def get_status(self):
 
-        return f"TA{self.device.temperature},RHA20.00,TB15.00,RHB25.00"
+        return f"TA{self.device.temperatureA},RHA20.00,TB{self.device.temperatureB},RHB25.00"
         

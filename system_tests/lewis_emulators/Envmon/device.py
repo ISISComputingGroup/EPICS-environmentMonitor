@@ -10,7 +10,9 @@ class SimulatedEnvmon(StateMachineDevice):
         Initialize all of the device's attributes.
         """
 
-        self.temperature = 10
+        self.temperatureA = 0
+        self.temperatureB = 0
+        self.connected = True
 
     def _get_state_handlers(self):
         return {
