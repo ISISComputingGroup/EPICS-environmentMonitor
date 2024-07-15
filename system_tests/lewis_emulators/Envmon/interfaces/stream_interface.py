@@ -5,6 +5,7 @@ from lewis.utils.replies import conditional_reply
 
 if_connected = conditional_reply("connected")
 
+# IOC Functionality
 
 @has_log
 class EnvmonStreamInterface(StreamInterface):

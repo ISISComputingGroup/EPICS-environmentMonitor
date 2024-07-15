@@ -1,6 +1,8 @@
 import unittest
 from parameterized import parameterized
 
+# Tests for IOC
+
 from utils.channel_access import ChannelAccess
 from utils.ioc_launcher import get_default_ioc_dir
 from utils.test_modes import TestModes
@@ -35,18 +37,20 @@ class EnvironmentmonitorTests(unittest.TestCase):
         self.ca.assert_that_pv_is("DISABLE", "COMMS ENABLED")
 
     @skip_if_recsim
-    def test_GIVEN_tempA_on_device_20_THEN_ioc_reports_20(self):
-        # Force Emulator to have a tempA 20
+    def test_GIVEN_tempA_on_device_X_THEN_ioc_reports_X(self):
+        # Force Emulator to have a tempA X
+        X = 20
         
-        self._lewis.backdoor_set_on_device("temperature", 20)
-        self.ca.assert_that_pv_is_number("TEMPA", 20, tolerance=0.01)
+        self._lewis.backdoor_set_on_device("temperatureA", X)
+        self.ca.assert_that_pv_is_number("TEMPA", X, tolerance=0.01)
 
     @skip_if_recsim
-    def test_GIVEN_tempB_on_device_30_THEN_ioc_reports_30(self):
-        # Force Emulator to have a tempB 30
+    def test_GIVEN_tempB_on_device_Y_THEN_ioc_reports_Y(self):
+        # Force Emulator to have a tempB Y
+        Y = 30
         
-        self._lewis.backdoor_set_on_device("temperature", 30)
-        self.ca.assert_that_pv_is_number("TEMPB", 30, tolerance=0.01)
+        self._lewis.backdoor_set_on_device("temperatureB", Y)
+        self.ca.assert_that_pv_is_number("TEMPB", Y, tolerance=0.01)
 
     @parameterized.expand(parameterized_list(["TEMPA", "TEMPB"]))
     @skip_if_recsim
