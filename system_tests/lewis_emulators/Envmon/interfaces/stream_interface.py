@@ -34,5 +34,5 @@ class EnvmonStreamInterface(StreamInterface):
     @if_connected
     def get_status(self):
 
-        return f"TA{self.device.temperatureA},RHA20.00,TB{self.device.temperatureB},RHB25.00"
+        return f"TA{self.device.temperatureA},RHA{self.device.rhumidityA},TB{self.device.temperatureB},RHB{self.device.rhumidityB}"
         

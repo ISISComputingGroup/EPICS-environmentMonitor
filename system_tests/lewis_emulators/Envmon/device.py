@@ -13,6 +13,8 @@ class SimulatedEnvmon(StateMachineDevice):
 
         self.temperatureA = 0
         self.temperatureB = 0
+        self.rhumidityA = 0
+        self.rhumidityB = 0
         self.connected = True
 
     def _get_state_handlers(self):
@@ -26,4 +28,3 @@ class SimulatedEnvmon(StateMachineDevice):
     def _get_transition_handlers(self):
         return OrderedDict([
         ])
-

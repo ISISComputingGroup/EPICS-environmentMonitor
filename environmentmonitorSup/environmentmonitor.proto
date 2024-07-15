@@ -13,3 +13,17 @@ getTempB {
 	in "TA%*f,RHA%*f,TB%f,RHB%*f";
 
 }
+
+getRHumidityA {
+
+	out "?STS";
+	in "TA%*f,RHA%f,TB%*f,RHB%*f";
+
+}
+
+getRHumidityB {
+
+	out "?STS";
+	in "TA%*f,RHA%*f,TB%*f,RHB%f";
+
+}

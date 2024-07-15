@@ -33,3 +33,19 @@ record(ai, "$(P)TEMPB")
 	field(INP, "@environmentmonitor.proto getTempB $(PORT)")
 	field(SCAN, "1 second")
 }
+
+record(ai, "$(P)RHUMIDA")
+{
+	field(DESC, "Relative Humidity A")
+	field(DTYP, "stream")
+	field(INP, "@environmentmonitor.proto getRHumidityA $(PORT)")
+	field(SCAN, "1 second")
+}
+
+record(ai, "$(P)RHUMIDB")
+{
+	field(DESC, "Relative Humidity B")
+	field(DTYP, "stream")
+	field(INP, "@environmentmonitor.proto getRHumidityB $(PORT)")
+	field(SCAN, "1 second")
+}

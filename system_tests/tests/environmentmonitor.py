@@ -45,12 +45,28 @@ class EnvironmentmonitorTests(unittest.TestCase):
         self.ca.assert_that_pv_is_number("TEMPA", X, tolerance=0.01)
 
     @skip_if_recsim
-    def test_GIVEN_tempB_on_device_Y_THEN_ioc_reports_Y(self):
+    def test_GIVEN_tempB_on_device_X_THEN_ioc_reports_X(self):
         # Force Emulator to have a tempB Y
-        Y = 30
+        X = 30
         
-        self._lewis.backdoor_set_on_device("temperatureB", Y)
-        self.ca.assert_that_pv_is_number("TEMPB", Y, tolerance=0.01)
+        self._lewis.backdoor_set_on_device("temperatureB", X)
+        self.ca.assert_that_pv_is_number("TEMPB", X, tolerance=0.01)
+
+    @skip_if_recsim
+    def test_GIVEN_relativehumidityA_on_device_X_THEN_ioc_reports_X(self):
+        # Force Emulator to have a rhumidA X
+        X = 10
+        
+        self._lewis.backdoor_set_on_device("rhumidityA", X)
+        self.ca.assert_that_pv_is_number("RHUMIDA", X, tolerance=0.01)
+
+    @skip_if_recsim
+    def test_GIVEN_relativehumidityB_on_device_X_THEN_ioc_reports_X(self):
+        # Force Emulator to have a rhumidB X
+        X = 15
+        
+        self._lewis.backdoor_set_on_device("rhumidityB", X)
+        self.ca.assert_that_pv_is_number("RHUMIDB", X, tolerance=0.01)
 
     @parameterized.expand(parameterized_list(["TEMPA", "TEMPB"]))
     @skip_if_recsim
