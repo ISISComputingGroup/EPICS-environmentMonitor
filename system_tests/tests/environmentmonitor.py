@@ -71,13 +71,17 @@ class EnvironmentmonitorTests(unittest.TestCase):
 
     @skip_if_recsim("Relies on device emulator.")
     def test_WHEN_device_macro_disconnects_THEN_sensor_is_not_present(self):
+        # Tests that if the macro SENSOR_A is disconnected then the SENSORA:PRESENT pv should say it is disconnected 
         
         with self._ioc.start_with_macros({"SENSOR_A":"no","SENSOR_B":"yes"}, pv_to_wait_for="DISABLE"):
             self.ca.assert_that_pv_is("SENSORA:PRESENT","Disabled")
 
     @parameterized.expand(parameterized_list(["TEMPA", "TEMPB", "RHUMIDA", "RHUMIDB"]))
     @skip_if_recsim("Relies on device emulator.")
-    def test_WHEN_device_disconnects_THEN_pvs_go_into_alarm(self, _, pv):
+    def test_WHEN_device_macro_connected_while_device_not_connected_THEN_alarm_raised(self, _, pv):
+        # Tests that if the device disconnects whilst it is expected that it should be connected, via the macros,
+        # then each PV goes into alarm.
+
         self.ca.assert_that_pv_alarm_is(pv, self.ca.Alarms.NONE)
 
         with self._lewis.backdoor_simulate_disconnected_device():
@@ -85,20 +89,14 @@ class EnvironmentmonitorTests(unittest.TestCase):
 
         self.ca.assert_that_pv_alarm_is(pv, self.ca.Alarms.NONE, timeout=10)
 
+    @parameterized.expand(parameterized_list(["TEMPA", "TEMPB", "RHUMIDA", "RHUMIDB"]))
     @skip_if_recsim("Relies on device emulator.")
-    def test_WHEN_device_macro_connected_while_device_not_connected_THEN_alarm_raised(self):
+    def test_WHEN_device_macro_disconnected_while_device_not_connected_THEN_no_alarm_raised(self,  _, pv):
+        # Tests that if the device disconnects whilst it is NOT expected that it should be connected,
+        # via the macros, then no PVs go into alarm. 
 
-        with self._lewis.backdoor_simulate_disconnected_device():
-            
-            self.ca.assert_that_pv_alarm_is("TEMPA", self.ca.Alarms.INVALID, timeout=10)
-
-        self.ca.assert_that_pv_alarm_is("TEMPA", self.ca.Alarms.NONE, timeout=10)
-
-    @skip_if_recsim("Relies on device emulator.")
-    def test_WHEN_device_macro_disconnected_while_device_not_connected_THEN_no_alarm_raised(self):
-
-        with self._ioc.start_with_macros({"SENSOR_A":"no","SENSOR_B":"yes"}, pv_to_wait_for="DISABLE"):
+        with self._ioc.start_with_macros({"SENSOR_A":"no","SENSOR_B":"no"}, pv_to_wait_for="DISABLE"):
             with self._lewis.backdoor_simulate_disconnected_device():
-                self.ca.assert_that_pv_alarm_is("TEMPA", self.ca.Alarms.NONE, timeout=30)
+                self.ca.assert_that_pv_alarm_is(pv, self.ca.Alarms.NONE, timeout=10)
 
-        self.ca.assert_that_pv_alarm_is("TEMPA", self.ca.Alarms.NONE, timeout=30)
+        self.ca.assert_that_pv_alarm_is(pv, self.ca.Alarms.NONE, timeout=10)

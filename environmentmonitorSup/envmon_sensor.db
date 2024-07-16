@@ -20,7 +20,7 @@ record(ai, "$(P)RHUMID$(SENSOR)")
 
 record(bo, "$(P)SENSOR$(SENSOR):PRESENT")
 {
-    field(DESC, "Sensor Present ?")
+    field(DESC, "Sensor (A or B) Present ?")
     field(PINI, "YES")
     $(IFPRESENT) field(VAL, "1")
     $(IFNOTPRESENT) field(VAL, "0")
