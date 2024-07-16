@@ -1,0 +1,28 @@
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+    field(PINI, "YES")
+}
+
+record(bo, "$(P)DISABLE")
+{
+    field(DESC, "Disable Comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+# Triggers redirections to the Temp and Humidity parts in protocol file
+record(ai, "$(P)_SCAN_STATUS")
+{
+	field(DESC, "Current Status")
+	field(DTYP, "stream")
+	field(INP, "@environmentmonitor.proto getStatus($(P)) $(PORT)")
+	field(SCAN, "1 second")
+}
