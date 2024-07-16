@@ -1,29 +1,8 @@
-Terminator = CR;
+Terminator = Cr;
 
-getTempA {
-
-	out "?STS";
-	in "TA%f,RHA%*f,TB%*f,RHB%*f";
-
-}
-
-getTempB {
+getStatus {
 
 	out "?STS";
-	in "TA%*f,RHA%*f,TB%f,RHB%*f";
-
-}
-
-getRHumidityA {
-
-	out "?STS";
-	in "TA%*f,RHA%f,TB%*f,RHB%*f";
-
-}
-
-getRHumidityB {
-
-	out "?STS";
-	in "TA%*f,RHA%*f,TB%*f,RHB%f";
+	in "A%(\$1TEMPA)f,B%(\$1RHUMIDA)f,C%(\$1TEMPB)f,D%(\$1RHUMIDB)f";
 
 }

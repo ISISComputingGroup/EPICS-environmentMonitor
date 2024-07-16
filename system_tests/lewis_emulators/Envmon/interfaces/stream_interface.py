@@ -5,7 +5,7 @@ from lewis.utils.replies import conditional_reply
 
 if_connected = conditional_reply("connected")
 
-# IOC Functionality
+# Devsim device Functionality
 
 @has_log
 class EnvmonStreamInterface(StreamInterface):
@@ -34,5 +34,5 @@ class EnvmonStreamInterface(StreamInterface):
     @if_connected
     def get_status(self):
 
-        return f"TA{self.device.temperatureA},RHA{self.device.rhumidityA},TB{self.device.temperatureB},RHB{self.device.rhumidityB}"
+        return f"A{self.device.temperatureA},B{self.device.rhumidityA},C{self.device.temperatureB},D{self.device.rhumidityB}"
         
