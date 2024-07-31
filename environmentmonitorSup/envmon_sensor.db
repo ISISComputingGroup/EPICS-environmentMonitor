@@ -1,0 +1,30 @@
+record(ai, "$(P)TEMP$(SENSOR)")
+{
+	field(DESC, "Temperature $(SENSOR)")
+    field(EGU, "C")
+    field(PREC, "2")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    $(IFPRESENT) info(alarm, "ENVMON")
+}
+
+record(ai, "$(P)RHUMID$(SENSOR)")
+{
+	field(DESC, "Relative Humidity $(SENSOR)")
+    field(EGU, "%")
+    field(PREC, "2")
+    info(INTEREST, "HIGH")
+    info(archive, "VAL")
+    $(IFPRESENT) info(alarm, "ENVMON")
+}
+
+record(bo, "$(P)SENSOR$(SENSOR):PRESENT")
+{
+    field(DESC, "Sensor (A or B) Present ?")
+    field(PINI, "YES")
+    $(IFPRESENT) field(VAL, "1")
+    $(IFNOTPRESENT) field(VAL, "0")
+    field(ZNAM, "Disabled")
+    field(ONAM, "Enabled")
+    info(INTEREST, "HIGH")
+}

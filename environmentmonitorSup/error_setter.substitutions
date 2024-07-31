@@ -1,0 +1,9 @@
+file $(UTILITIES)/db/error_setter.template {
+    pattern {P, STREAM_PV, PV_NAME}
+    
+	{"\$(P)", "_SCAN_STATUS", "TEMPA"}
+    {"\$(P)", "_SCAN_STATUS", "RHUMIDA"}
+    {"\$(P)", "_SCAN_STATUS", "TEMPB"}
+    {"\$(P)", "_SCAN_STATUS", "RHUMIDB"}
+    
+}

@@ -1,0 +1,8 @@
+Terminator = Cr;
+
+getStatus {
+
+	out "?STS";
+	in "A%(\$1TEMPA)f,B%(\$1RHUMIDA)f,C%(\$1TEMPB)f,D%(\$1RHUMIDB)f"; # Format of incoming data to expect
+
+}
