@@ -1,5 +1,5 @@
-from .device import SimulatedEnvmon
 from ..lewis_versions import LEWIS_LATEST
+from .device import SimulatedEnvmon
 
 framework_version = LEWIS_LATEST
-__all__ = ['SimulatedEnvmon']
+__all__ = ["SimulatedEnvmon"]

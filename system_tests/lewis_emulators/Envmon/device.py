@@ -1,11 +1,13 @@
 from collections import OrderedDict
-from .states import DefaultState
+
 from lewis.devices import StateMachineDevice
+
+from .states import DefaultState
 
 # Devsim device
 
-class SimulatedEnvmon(StateMachineDevice):
 
+class SimulatedEnvmon(StateMachineDevice):
     def _initialize_data(self):
         """
         Initialize all of the device's attributes.
@@ -19,12 +21,11 @@ class SimulatedEnvmon(StateMachineDevice):
 
     def _get_state_handlers(self):
         return {
-            'default': DefaultState(),
+            "default": DefaultState(),
         }
 
     def _get_initial_state(self):
-        return 'default'
+        return "default"
 
     def _get_transition_handlers(self):
-        return OrderedDict([
-        ])
+        return OrderedDict([])
